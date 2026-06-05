@@ -1,0 +1,4 @@
+interface:
+  display_name: "News Weekly Report"
+  short_description: "Run News All in One weekly intelligence reports"
+  default_prompt: "继续 News All in One 项目，读取 memory 并按周五 15:00 流程生成、审核、交付最新新闻研报。"
