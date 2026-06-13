@@ -51,11 +51,14 @@ Gemini must produce a Chinese global news intelligence report based on real retr
 - Final Word/PDF follow Spotify All in One delivery style unless News memory overrides it.
 - Use Microsoft Word for final PDF export; do not silently use a lower-fidelity fallback.
 - H1 title should not look like it has a blank line inside the wrap.
+- H1 title must be a constructive thesis-style bilingual sentence that lets the reader understand the issue's main conclusion from the title alone, not a generic topic stack.
 - Major sections flow naturally when the page still has enough space.
 - Only start a new page when a heading or short structural label would land in the bottom quarter of a page with only a tiny amount of following body text.
 - Do not force Part Two, Part Three, or Part Four onto new pages unless the bottom-quarter rule requires it.
 - Separate major parts with one blank line, a horizontal separator, and one blank line.
 - Source column in Top 40 tables is secondary and uses small text.
+- Top 40 tables should use the full available body width, visually aligning with the surrounding text edges when possible.
+- Top 40 tier headings must not sit alone near the bottom quarter of a page. If a tier heading would land too low before its table, start that tier on a new page with the table.
 - Use clear gray-blue borders for tables.
 - Split table analysis cells into separate blocks:
   - `核心摘要：` then blank line then `深度预期差分析：`

@@ -29,6 +29,9 @@ Use this skill for Hannah's recurring News All in One global news intelligence w
 - Normal coverage window: previous Friday 15:00 inclusive to current Friday 15:00 exclusive. Always print exact absolute timestamps.
 - Do not download Spotify transcripts. This project intentionally removed all episode/transcript/mark-seen steps.
 - Final filename stem must be `YYMMDD-News全球新闻情报研报`.
+- Visible H1 title must be a constructive thesis-style bilingual sentence that immediately communicates the issue's key conclusion, not a generic topic stack.
+- Top 40 tables must use the full available body width, with the source column kept compact and smaller while analysis columns receive most of the width.
+- Top 40 tier headings must not sit alone near the bottom quarter of a page. If a tier heading would land too low before its table, start that tier on a new page with the table.
 - Word goes to Google Drive folder `2.国际科技情报`.
 - PDF goes to Zotero collection `2.国际科技情报` with `/unread` and `/<YYMMDD>` tags.
 - PDF goes to Discord `todo`, channel ID `1508163671988109393`, through Discord Studio at `/Users/hannah/.discord-studio/Discord_Studio`.
