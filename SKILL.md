@@ -31,12 +31,16 @@ Use this skill for Hannah's recurring News All in One global news intelligence w
 - Final filename stem must be `YYMMDD-News全球新闻情报研报`.
 - Visible H1 title must be a constructive thesis-style bilingual sentence that immediately communicates the issue's key conclusion, not a generic topic stack.
 - Top 40 tables must use the full available body width, with the source column kept compact and smaller while analysis columns receive most of the width.
+- Source cells must display compact clickable source names only. Never print full raw URLs in the table; keep them hidden in hyperlink targets.
 - Top 40 tier headings must not sit alone near the bottom quarter of a page. If a tier heading would land too low before its table, start that tier on a new page with the table.
+- Never force a tier or major section onto a new page merely because the preceding table ended. Use only the conditional bottom-quarter rule confirmed by visual inspection.
 - Word goes to Google Drive folder `2.国际科技情报`.
 - PDF goes to Zotero collection `2.国际科技情报` with `/unread` and `/<YYMMDD>` tags.
 - PDF goes to Discord `todo`, channel ID `1508163671988109393`, through Discord Studio at `/Users/hannah/.discord-studio/Discord_Studio`.
 - The run is not complete until content review, format audit, visual inspection, Zotero, Google Drive, and Discord all succeed or the user explicitly skips a blocked channel.
 - When using Gemini, never invent facts, dates, citations, source URLs, companies, products, or future events. Rumors must be labeled as unconfirmed.
+- Reject simulated or hypothetical Gemini output. If one-shot grounding fails, use four grounded research batches and rebuild the final report from verified evidence.
+- Open all 40 source URLs before delivery. Replace inaccessible links, and remove any event that cannot be independently re-verified.
 - Respect Codex approval prompts for external uploads and local Zotero DB writes. Do not work around rejected approvals.
 
 ## Common User Triggers

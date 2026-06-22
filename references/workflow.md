@@ -35,6 +35,8 @@ Gemini must produce a Chinese global news intelligence report based on real retr
 - Top 40 events only.
 - Deduplicate same-event coverage.
 - Prefer official releases, regulators, primary sources, authoritative media, and high-quality research.
+- Reject any report containing simulated, hypothetical, knowledge-cutoff, or refusal-to-retrieve language.
+- Open every Top 40 source URL over the network before delivery. Replace inaccessible links, and remove any event that cannot be independently re-verified.
 - Exclude routine small stock moves, empty daily recaps, and pure technical indicator alerts.
 - Required parts:
   - `第一部分：核心综述与摘要 (Executive Summary)`
@@ -46,6 +48,8 @@ Gemini must produce a Chinese global news intelligence report based on real retr
   - 11-25: `第二梯队：产业与政策深度`
   - 26-40: `第三梯队：微观信号与前兆`
 
+If one-shot Gemini generation omits sources or fails grounding, split retrieval into four evidence batches (macro, AI/technology, China, and industry), then rebuild the final prompt from those grounded batches. Never invent or guess replacement URLs.
+
 ## 4. Formatting Contract
 
 - Final Word/PDF follow Spotify All in One delivery style unless News memory overrides it.
@@ -56,7 +60,7 @@ Gemini must produce a Chinese global news intelligence report based on real retr
 - Only start a new page when a heading or short structural label would land in the bottom quarter of a page with only a tiny amount of following body text.
 - Do not force Part Two, Part Three, or Part Four onto new pages unless the bottom-quarter rule requires it.
 - Separate major parts with one blank line, a horizontal separator, and one blank line.
-- Source column in Top 40 tables is secondary and uses small text.
+- Source column in Top 40 tables is secondary and uses small text. Show only clickable source names; keep raw URLs hidden in hyperlink targets.
 - Top 40 tables should use the full available body width, visually aligning with the surrounding text edges when possible.
 - Top 40 tier headings must not sit alone near the bottom quarter of a page. If a tier heading would land too low before its table, start that tier on a new page with the table.
 - Use clear gray-blue borders for tables.
