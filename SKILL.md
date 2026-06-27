@@ -39,8 +39,11 @@ Use this skill for Hannah's recurring News All in One global news intelligence w
 - PDF goes to Discord `todo`, channel ID `1508163671988109393`, through Discord Studio at `/Users/hannah/.discord-studio/Discord_Studio`.
 - The run is not complete until content review, format audit, visual inspection, Zotero, Google Drive, and Discord all succeed or the user explicitly skips a blocked channel.
 - When using Gemini, never invent facts, dates, citations, source URLs, companies, products, or future events. Rumors must be labeled as unconfirmed.
-- Reject simulated or hypothetical Gemini output. If one-shot grounding fails, use four grounded research batches and rebuild the final report from verified evidence.
-- Open all 40 source URLs before delivery. Replace inaccessible links, and remove any event that cannot be independently re-verified.
+- Gemini must follow the candidate-first verified-source workflow: generate candidate evidence rows, audit source URLs, then draft the final report only from a verified evidence table.
+- Do not ask Gemini to write the final report until at least 40 verified candidate rows are available.
+- Reject simulated or hypothetical Gemini output. If candidate batches are insufficient, generate focused additional batches rather than letting Gemini fill gaps.
+- Open all 40 source URLs before rendering or delivery. Replace inaccessible links, and remove any event that cannot be independently re-verified.
+- Final report sources must never contain `vertexaisearch`, Google Search pages, Google grounding redirects, guessed URLs, homepage-only citations, placeholders, or 404 links.
 - Respect Codex approval prompts for external uploads and local Zotero DB writes. Do not work around rejected approvals.
 
 ## Common User Triggers

@@ -19,9 +19,17 @@ For a manual staged run:
 
 ```bash
 python3 scripts/build_weekly_prompt.py
-python3 scripts/generate_gemini_report.py
-python3 scripts/check_gemini_report.py reports/markdown/<run_id>-gemini-report.md
-python3 scripts/render_delivery_reports.py reports/markdown/<run_id>-gemini-report.md
+python3 scripts/build_grounded_research_prompts.py
+python3 scripts/generate_gemini_report.py --prompt data/gemini_inputs/<run_id>-research-macro/gemini-prompt.md
+python3 scripts/generate_gemini_report.py --prompt data/gemini_inputs/<run_id>-research-ai-tech/gemini-prompt.md
+python3 scripts/generate_gemini_report.py --prompt data/gemini_inputs/<run_id>-research-china/gemini-prompt.md
+python3 scripts/generate_gemini_report.py --prompt data/gemini_inputs/<run_id>-research-industry/gemini-prompt.md
+python3 scripts/collect_verified_evidence.py reports/markdown/<run_id>-research-*-gemini-report.md --output data/verified_evidence/<run_id>.md
+python3 scripts/build_verified_final_prompt.py --prompt data/gemini_inputs/<run_id>/gemini-prompt.md --evidence data/verified_evidence/<run_id>.md
+python3 scripts/generate_gemini_report.py --prompt data/gemini_inputs/<run_id>-verified-final/gemini-prompt.md
+python3 scripts/check_gemini_report.py reports/markdown/<run_id>-verified-final-gemini-report.md
+python3 scripts/check_report_source_links.py reports/markdown/<run_id>-verified-final-gemini-report.md
+python3 scripts/render_delivery_reports.py reports/markdown/<run_id>-verified-final-gemini-report.md
 python3 scripts/audit_delivery_report_format.py --docx reports/docx/<YYMMDD-News全球新闻情报研报.docx> --pdf reports/pdf/<YYMMDD-News全球新闻情报研报.pdf>
 ```
 
@@ -36,7 +44,10 @@ Gemini must produce a Chinese global news intelligence report based on real retr
 - Deduplicate same-event coverage.
 - Prefer official releases, regulators, primary sources, authoritative media, and high-quality research.
 - Reject any report containing simulated, hypothetical, knowledge-cutoff, or refusal-to-retrieve language.
-- Open every Top 40 source URL over the network before delivery. Replace inaccessible links, and remove any event that cannot be independently re-verified.
+- Use the candidate-first verified-source workflow. Gemini first produces candidate evidence rows; Codex audits source URLs; Gemini drafts the final report only from the verified evidence table.
+- Do not let Gemini write the final long-form report until at least 40 verified candidate rows exist.
+- Open every Top 40 source URL over the network before rendering or delivery. Replace inaccessible links, and remove any event that cannot be independently re-verified.
+- Final report sources must never contain `vertexaisearch`, Google Search pages, Google grounding redirects, guessed URLs, homepage-only citations, placeholders, or 404 links.
 - Exclude routine small stock moves, empty daily recaps, and pure technical indicator alerts.
 - Required parts:
   - `第一部分：核心综述与摘要 (Executive Summary)`
@@ -48,7 +59,7 @@ Gemini must produce a Chinese global news intelligence report based on real retr
   - 11-25: `第二梯队：产业与政策深度`
   - 26-40: `第三梯队：微观信号与前兆`
 
-If one-shot Gemini generation omits sources or fails grounding, split retrieval into four evidence batches (macro, AI/technology, China, and industry), then rebuild the final prompt from those grounded batches. Never invent or guess replacement URLs.
+One-shot final report generation is no longer the preferred production path. Split retrieval into evidence batches (macro, AI/technology, China, and industry), audit the candidate URLs, then build the final prompt from the verified evidence table. Never invent or guess replacement URLs.
 
 ## 4. Formatting Contract
 
