@@ -20,11 +20,12 @@ For a manual staged run:
 ```bash
 python3 scripts/build_weekly_prompt.py
 python3 scripts/build_grounded_research_prompts.py
-python3 scripts/generate_gemini_report.py --prompt data/gemini_inputs/<run_id>-research-macro/gemini-prompt.md
-python3 scripts/generate_gemini_report.py --prompt data/gemini_inputs/<run_id>-research-ai-tech/gemini-prompt.md
-python3 scripts/generate_gemini_report.py --prompt data/gemini_inputs/<run_id>-research-china/gemini-prompt.md
-python3 scripts/generate_gemini_report.py --prompt data/gemini_inputs/<run_id>-research-industry/gemini-prompt.md
+python3 scripts/generate_gemini_report.py --prompt data/gemini_inputs/<run_id>-research-macro/gemini-prompt.md --allow-risk-phrases
+python3 scripts/generate_gemini_report.py --prompt data/gemini_inputs/<run_id>-research-ai-tech/gemini-prompt.md --allow-risk-phrases
+python3 scripts/generate_gemini_report.py --prompt data/gemini_inputs/<run_id>-research-china/gemini-prompt.md --allow-risk-phrases
+python3 scripts/generate_gemini_report.py --prompt data/gemini_inputs/<run_id>-research-industry/gemini-prompt.md --allow-risk-phrases
 python3 scripts/collect_verified_evidence.py reports/markdown/<run_id>-research-*-gemini-report.md --output data/verified_evidence/<run_id>.md
+python3 scripts/build_verified_rows_prompt.py --window-prompt data/gemini_inputs/<run_id>/gemini-prompt.md --output data/gemini_inputs/<run_id>-verified-topup1/gemini-prompt.md --exclude data/verified_evidence/<run_id>.md
 python3 scripts/build_verified_final_prompt.py --prompt data/gemini_inputs/<run_id>/gemini-prompt.md --evidence data/verified_evidence/<run_id>.md
 python3 scripts/generate_gemini_report.py --prompt data/gemini_inputs/<run_id>-verified-final/gemini-prompt.md
 python3 scripts/check_gemini_report.py reports/markdown/<run_id>-verified-final-gemini-report.md
