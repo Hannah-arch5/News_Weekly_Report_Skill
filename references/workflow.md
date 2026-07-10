@@ -9,6 +9,8 @@
 
 ## 2. Generate Or Continue
 
+The scheduled Friday cutoff controls the report identity. If Hannah asks Codex to generate or resume a report days late, use the missed scheduled Friday 15:00 as the window end, filename date, Zotero date tag, title window, and content window. Do not substitute the later request date.
+
 For a scheduled Friday run, use:
 
 ```bash
@@ -50,6 +52,7 @@ Gemini must produce a Chinese global news intelligence report based on real retr
 - Before Gemini research batches, collect a source-candidate pool with `scripts/collect_source_candidates.py`. The configured sources include Yahoo Finance RSS, Seeking Alpha Market Currents, Fed/SEC/BEA official RSS, selected official/industry RSS or pages such as EIA, ECB, FTC, NVIDIA, OpenAI, Apple, and IBM, AP pages, 财联社, 东方财富, 同花顺, and optional Reuters pages.
 - Pass the source-candidate table into `scripts/build_grounded_research_prompts.py --source-candidates ...` so Gemini prioritizes already-opened source URLs and uses Google Search only to fill gaps.
 - Do not let Gemini write the final long-form report until at least 40 verified candidate rows exist.
+- Treat repeated source URLs as duplicated events unless the row has a genuinely different direct URL and independent event basis. If URL-level deduplication leaves fewer than 40 verified rows, generate additional focused candidate batches before final drafting.
 - If verified evidence stalls below 40 rows, first expand or tune `config/news_sources.json` with stable official/RSS/page sources, regenerate `data/source_candidates/<run_id>.md`, then build focused top-up prompts with `scripts/build_verified_rows_prompt.py --source-candidates data/source_candidates/<run_id>.md --window-prompt data/gemini_inputs/<run_id>/gemini-prompt.md`. Keep Gemini doing the retrieval/screening work; Codex should audit URLs and guide focused top-ups rather than manually writing large batches.
 - Open every Top 40 source URL over the network before rendering or delivery. Replace inaccessible links, and remove any event that cannot be independently re-verified.
 - Final report sources must never contain `vertexaisearch`, Google Search pages, Google grounding redirects, guessed URLs, homepage-only citations, placeholders, or 404 links.
