@@ -34,6 +34,7 @@ Use this skill for Hannah's recurring News All in One global news intelligence w
 - Top 40 analysis cells must be deep enough for decision support, not one-line news digests. Each row should include factual context, expected-difference reasoning, signal/transmission-chain value, and business implications for A-share, U.S. equity, AI, supply-chain, sector, or geopolitical decisions where relevant. Allow the PDF to become longer if needed.
 - Source cells must display compact clickable source names only. Never print full raw URLs in the table; keep them hidden in hyperlink targets.
 - Top 40 tier headings must not sit alone near the bottom quarter of a page. If a tier heading would land too low before its table, start that tier on a new page with the table.
+- A tier heading plus only the repeated table header row is still visually orphaned. Visual inspection must confirm at least the first substantive data row appears under a tier heading; otherwise insert a page break before that tier and rerender.
 - Never force a tier or major section onto a new page merely because the preceding table ended. Use only the conditional bottom-quarter rule confirmed by visual inspection.
 - Word goes to Google Drive folder `2.国际科技情报`.
 - PDF goes to Zotero collection `2.国际科技情报` with `/unread` and `/<YYMMDD>` tags.
