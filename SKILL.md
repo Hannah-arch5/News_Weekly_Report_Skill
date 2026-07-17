@@ -31,6 +31,7 @@ Use this skill for Hannah's recurring News All in One global news intelligence w
 - Final filename stem must be `YYMMDD-News全球新闻情报研报`.
 - Visible H1 title must be a constructive thesis-style bilingual sentence that immediately communicates the issue's key conclusion, not a generic topic stack.
 - Top 40 tables must use the full available body width, with the source column kept compact and smaller while analysis columns receive most of the width.
+- Top 40 analysis cells must be deep enough for decision support, not one-line news digests. Each row should include factual context, expected-difference reasoning, signal/transmission-chain value, and business implications for A-share, U.S. equity, AI, supply-chain, sector, or geopolitical decisions where relevant. Allow the PDF to become longer if needed.
 - Source cells must display compact clickable source names only. Never print full raw URLs in the table; keep them hidden in hyperlink targets.
 - Top 40 tier headings must not sit alone near the bottom quarter of a page. If a tier heading would land too low before its table, start that tier on a new page with the table.
 - Never force a tier or major section onto a new page merely because the preceding table ended. Use only the conditional bottom-quarter rule confirmed by visual inspection.
@@ -40,6 +41,7 @@ Use this skill for Hannah's recurring News All in One global news intelligence w
 - The run is not complete until content review, format audit, visual inspection, Zotero, Google Drive, and Discord all succeed or the user explicitly skips a blocked channel.
 - When using Gemini, never invent facts, dates, citations, source URLs, companies, products, or future events. Rumors must be labeled as unconfirmed.
 - Gemini must follow the candidate-first verified-source workflow: generate candidate evidence rows, audit source URLs, then draft the final report only from a verified evidence table.
+- If Gemini API quota is exhausted and Hannah explicitly authorizes using Codex/OpenAI capacity, Codex may draft from the verified source-candidate pool directly. This does not relax any delivery gate: exactly 40 ranked rows, 40 openable direct source URLs, no duplicate URLs, content review, source audit, visual inspection, and delivery verification still apply.
 - Do not ask Gemini to write the final report until at least 40 verified candidate rows are available.
 - Reject simulated or hypothetical Gemini output. If candidate batches are insufficient, generate focused additional batches rather than letting Gemini fill gaps.
 - Open all 40 source URLs before rendering or delivery. Replace inaccessible links, and remove any event that cannot be independently re-verified.
