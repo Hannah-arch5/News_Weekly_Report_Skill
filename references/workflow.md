@@ -9,7 +9,7 @@
 
 ## 2. Generate Or Continue
 
-The scheduled Friday cutoff controls the report identity. If Hannah asks Codex to generate or resume a report days late, use the missed scheduled Friday 15:00 as the window end, filename date, Zotero date tag, title window, and content window. Do not substitute the later request date.
+The scheduled Friday cutoff controls the report identity. If Hannah asks Codex to generate or resume a report days late, use the missed scheduled Friday 15:00 as the window end, filename date, Zotero month tag, title window, and content window. Do not substitute the later request date.
 
 For a scheduled Friday run, use:
 
@@ -93,7 +93,7 @@ One-shot final report generation is no longer the preferred production path. Spl
 After review and audit pass:
 
 1. Stage Word and PDF under `reports/archive/pending/<YYMM>/`.
-2. Archive PDF to Zotero collection `2.国际科技情报` with `/unread` and `/<YYMMDD>` tags.
+2. Archive PDF to Zotero collection `2.国际科技情报` with `/unread` and `/<YYMM>` tags.
 3. Upload Word to Google Drive folder `2.国际科技情报`.
 4. Send PDF to Discord `todo` channel ID `1508163671988109393`.
 5. Verify each destination:
@@ -127,5 +127,5 @@ npm run send:discord -- 1508163671988109393 "News All in One 全球新闻情报�
 Use Zotero helper:
 
 ```bash
-python3 scripts/archive_pdf_to_zotero.py "<pdf>" --collection "2.国际科技情报" --tag /unread --tag /<YYMMDD> --replace-existing --backup --create-collection
+python3 scripts/archive_pdf_to_zotero.py "<pdf>" --collection "2.国际科技情报" --tag /unread --tag /<YYMM> --replace-existing --backup --create-collection
 ```

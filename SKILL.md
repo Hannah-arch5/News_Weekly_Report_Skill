@@ -37,7 +37,7 @@ Use this skill for Hannah's recurring News All in One global news intelligence w
 - A tier heading plus only the repeated table header row is still visually orphaned. Visual inspection must confirm at least the first substantive data row appears under a tier heading; otherwise insert a page break before that tier and rerender.
 - Never force a tier or major section onto a new page merely because the preceding table ended. Use only the conditional bottom-quarter rule confirmed by visual inspection.
 - Word goes to Google Drive folder `2.国际科技情报`.
-- PDF goes to Zotero collection `2.国际科技情报` with `/unread` and `/<YYMMDD>` tags.
+- PDF goes to Zotero collection `2.国际科技情报` with `/unread` and `/<YYMM>` tags. Keep filenames as `YYMMDD`, but Zotero date tags only go to month granularity.
 - PDF goes to Discord `todo`, channel ID `1508163671988109393`, through Discord Studio at `/Users/hannah/.discord-studio/Discord_Studio`.
 - The run is not complete until content review, format audit, visual inspection, Zotero, Google Drive, and Discord all succeed or the user explicitly skips a blocked channel.
 - When using Gemini, never invent facts, dates, citations, source URLs, companies, products, or future events. Rumors must be labeled as unconfirmed.
