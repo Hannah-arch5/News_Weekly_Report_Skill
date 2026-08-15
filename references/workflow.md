@@ -100,6 +100,7 @@ After review and audit pass:
    - Zotero item is in `2.国际科技情报` and has both tags.
    - Google Drive folder `2.国际科技情报` contains the Word file.
    - Discord Studio notifications log shows `notification_sent`.
+   - If Discord Studio queues the notification but no `notification_sent` appears after a short wait, use the existing direct-send fallback only for that exact queued notification ID, then append the matching `notification_sent` event with the returned Discord message ID. Do not resend broadly or process unrelated queued notifications; this avoids duplicate PDFs in `todo`.
 6. Update `PROJECT_MEMORY.md` with exact delivery status and any blockers.
 7. Commit code, docs, and memory changes to Git. Keep `.env`, `data/`, and `reports/` ignored.
 
