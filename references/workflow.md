@@ -39,6 +39,8 @@ python3 scripts/audit_delivery_report_format.py --docx reports/docx/<YYMMDD-News
 
 If Gemini Pro quota fails, note it plainly and use the project fallback only if already configured or approved by the user.
 
+Current Gemini note: the legacy `gemini-2.5-pro` model returned `404` on 2026-08-21. The project default is now `gemini-2.5-flash-lite`; override `NEWS_GEMINI_MODEL` only when a newer available Gemini model has quota and grounding support.
+
 ## 3. Content Contract
 
 Gemini must produce a Chinese global news intelligence report based on real retrieval:
@@ -50,6 +52,7 @@ Gemini must produce a Chinese global news intelligence report based on real retr
 - Reject any report containing simulated, hypothetical, knowledge-cutoff, or refusal-to-retrieve language.
 - Use the candidate-first verified-source workflow. Gemini first produces candidate evidence rows; Codex audits source URLs; Gemini drafts the final report only from the verified evidence table.
 - Before Gemini research batches, collect a source-candidate pool with `scripts/collect_source_candidates.py`. The configured sources include Yahoo Finance RSS, Seeking Alpha Market Currents, Fed/SEC/BEA official RSS, selected official/industry RSS or pages such as EIA, ECB, FTC, NVIDIA, OpenAI, Apple, and IBM, AP pages, 财联社, 东方财富, 同花顺, and optional Reuters pages.
+- Source-candidate timestamps must be compared against the report cutoff in `Asia/Shanghai`, including RSS dates with explicit offsets such as `-0400` or `Z`. Do not allow items published after Friday 15:00 CST into the final evidence pool.
 - Pass the source-candidate table into `scripts/build_grounded_research_prompts.py --source-candidates ...` so Gemini prioritizes already-opened source URLs and uses Google Search only to fill gaps.
 - Do not let Gemini write the final long-form report until at least 40 verified candidate rows exist.
 - Treat repeated source URLs as duplicated events unless the row has a genuinely different direct URL and independent event basis. If URL-level deduplication leaves fewer than 40 verified rows, generate additional focused candidate batches before final drafting.
