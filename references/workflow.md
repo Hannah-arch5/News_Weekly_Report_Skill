@@ -84,12 +84,14 @@ One-shot final report generation is no longer the preferred production path. Spl
 - Separate major parts with one blank line, a horizontal separator, and one blank line.
 - Source column in Top 40 tables is secondary and uses small text. Show only clickable source names; keep raw URLs hidden in hyperlink targets.
 - Top 40 tables should use the full available body width, visually aligning with the surrounding text edges when possible.
+- Top 40 `核心事件` titles must be Chinese-first. Original English headlines may appear in parentheses after the Chinese title, but English-only event titles fail review.
 - Top 40 tier headings must not sit alone near the bottom quarter of a page. If a tier heading would land too low before its table, start that tier on a new page with the table.
 - Use clear gray-blue borders for tables.
 - Split table analysis cells into separate blocks:
   - `核心摘要：` then blank line then `深度预期差分析：`
   - `情报价值：` then blank line then `业务影响建议：`
 - Do not bold ordinary keywords. Bold only headings, table headers, tier headings, and short structural labels.
+- Final Word/PDF output must not have detached punctuation at the beginning of visual lines; punctuation should stay attached to the preceding text.
 
 ## 5. Delivery
 
