@@ -5,6 +5,7 @@
 - Work in `/Users/hannah/Documents/News ALL in One`.
 - Read `PROJECT_MEMORY.md` first, then `README.md`, `docs/WORKFLOW.md`, and `docs/REPORT_FORMAT_REQUIREMENTS.md`.
 - Check Git state before edits. Never revert user changes.
+- Run `python3 scripts/audit_report_schedule.py` before choosing the next report window. Treat `OVERDUE` rows as historical gaps and `CURRENT_DUE` as the newest issue. Backfill every overdue issue in chronological order, including full review and three-channel delivery, before generating the current issue. Do not skip an older missing Friday when the user asks for the latest report.
 - If continuing a run, prefer the latest existing report artifacts instead of regenerating unless the user asks for a fresh run.
 
 ## 2. Generate Or Continue

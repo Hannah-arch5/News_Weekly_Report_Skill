@@ -1,6 +1,6 @@
 ---
 name: news-weekly-report
-description: Run or continue Hannah's News All in One weekly global news intelligence report workflow. Use when the user asks to make the Friday 15:00 News All in One report, continue or complete the weekly news report flow, generate/review/render/deliver a global news intelligence report, fix News All in One formatting or delivery, update the Friday automation, or ensure Zotero, Google Drive, and Discord delivery for the news report.
+description: Run or continue Hannah's News All in One weekly global news intelligence report workflow. Use when the user asks to make the Friday 15:00 News All in One report, audit or backfill missing weekly issues, continue or complete the weekly news report flow, generate/review/render/deliver a global news intelligence report, fix News All in One formatting or delivery, update the Friday automation, or ensure Zotero, Google Drive, and Discord delivery for the news report.
 ---
 
 # News Weekly Report
@@ -17,6 +17,7 @@ Use this skill for Hannah's recurring News All in One global news intelligence w
    - `docs/REPORT_FORMAT_REQUIREMENTS.md`
 3. Trust the newest `PROJECT_MEMORY.md` state over older notes.
 4. Check current state before heavy work:
+   - run `python3 scripts/audit_report_schedule.py` before choosing a report window
    - `git status --short`
    - latest `data/service_logs/*.json` if present
    - latest Markdown report under `reports/markdown/`
@@ -26,6 +27,7 @@ Use this skill for Hannah's recurring News All in One global news intelligence w
 ## Hard Rules
 
 - Fixed schedule: every Friday 15:00 Asia/Shanghai.
+- Before every generation or continuation, audit all expected Friday cutoffs with `scripts/audit_report_schedule.py`. If historical issues are missing, backfill them in chronological order and complete all review and delivery gates for each issue before generating the current/latest issue. A request for the latest report never permits skipping older missing Fridays.
 - Normal coverage window: previous Friday 15:00 inclusive to current Friday 15:00 exclusive. Always print exact absolute timestamps.
 - Do not download Spotify transcripts. This project intentionally removed all episode/transcript/mark-seen steps.
 - Final filename stem must be `YYMMDD-News全球新闻情报研报`.
