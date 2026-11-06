@@ -87,6 +87,7 @@ One-shot final report generation is no longer the preferred production path. Spl
 - Top 40 tables should use the full available body width, visually aligning with the surrounding text edges when possible.
 - Top 40 `核心事件` titles must be Chinese-first. Original English headlines may appear in parentheses after the Chinese title, but English-only event titles fail review.
 - Top 40 tier headings must not sit alone near the bottom quarter of a page. If a tier heading would land too low before its table, start that tier on a new page with the table.
+- Resolve pagination in this order: first bring an overlong Chinese executive summary back to about 700 visible Chinese characters; then tighten only unusually verbose boundary rows while preserving the 170/170/360 depth gate; finally add a conditional page break if a heading still appears with only the repeated table header. Do not create a large blank page by using a hard break before correcting avoidable content-density drift.
 - Use clear gray-blue borders for tables.
 - Split table analysis cells into separate blocks:
   - `核心摘要：` then blank line then `深度预期差分析：`

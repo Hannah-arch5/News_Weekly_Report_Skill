@@ -39,6 +39,7 @@ Use this skill for Hannah's recurring News All in One global news intelligence w
 - Final Word/PDF output must not have detached punctuation at the start of a visual line. Chinese and English punctuation should stay attached to the preceding text.
 - Top 40 tier headings must not sit alone near the bottom quarter of a page. If a tier heading would land too low before its table, start that tier on a new page with the table.
 - A tier heading plus only the repeated table header row is still visually orphaned. Visual inspection must confirm at least the first substantive data row appears under a tier heading; otherwise insert a page break before that tier and rerender.
+- Before adding a hard page break to fix an orphan or large gap, normalize avoidable content density first: keep the Chinese executive summary near 700 visible Chinese characters and trim unusually verbose table rows only when they remain above the permanent depth gate. Part Two should flow onto the current page when the summary can be brought to standard length and rank 1 can appear with its heading. Use a hard page break only when the heading/header orphan remains after this density check.
 - Never force a tier or major section onto a new page merely because the preceding table ended. Use only the conditional bottom-quarter rule confirmed by visual inspection.
 - Word goes to Google Drive folder `2.国际科技情报`.
 - PDF goes to Zotero collection `2.国际科技情报` with `/unread` and `/<YYMM>` tags. Keep filenames as `YYMMDD`, but Zotero date tags only go to month granularity.
