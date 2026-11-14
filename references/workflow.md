@@ -29,9 +29,9 @@ python3 scripts/generate_gemini_report.py --prompt data/gemini_inputs/<run_id>-r
 python3 scripts/generate_gemini_report.py --prompt data/gemini_inputs/<run_id>-research-china/gemini-prompt.md --allow-risk-phrases
 python3 scripts/generate_gemini_report.py --prompt data/gemini_inputs/<run_id>-research-industry/gemini-prompt.md --allow-risk-phrases
 python3 scripts/collect_verified_evidence.py reports/markdown/<run_id>-research-*-gemini-report.md --output data/verified_evidence/<run_id>.md
-python3 scripts/build_verified_rows_prompt.py --window-prompt data/gemini_inputs/<run_id>/gemini-prompt.md --output data/gemini_inputs/<run_id>-verified-topup1/gemini-prompt.md --exclude data/verified_evidence/<run_id>.md
+python3 scripts/build_verified_rows_prompt.py --window-prompt data/gemini_inputs/<run_id>/gemini-prompt.md --source-candidates data/source_candidates/<run_id>.md --output data/gemini_inputs/<run_id>-verified-topup1/gemini-prompt.md --exclude data/verified_evidence/<run_id>.md
 python3 scripts/build_verified_final_prompt.py --prompt data/gemini_inputs/<run_id>/gemini-prompt.md --evidence data/verified_evidence/<run_id>.md
-python3 scripts/generate_gemini_report.py --prompt data/gemini_inputs/<run_id>-verified-final/gemini-prompt.md
+python3 scripts/generate_gemini_report.py --prompt data/gemini_inputs/<run_id>-verified-final/gemini-prompt.md --stream
 python3 scripts/check_gemini_report.py reports/markdown/<run_id>-verified-final-gemini-report.md
 python3 scripts/check_report_source_links.py reports/markdown/<run_id>-verified-final-gemini-report.md
 python3 scripts/render_delivery_reports.py reports/markdown/<run_id>-verified-final-gemini-report.md
@@ -57,6 +57,7 @@ Gemini must produce a Chinese global news intelligence report based on real retr
 - Pass the source-candidate table into `scripts/build_grounded_research_prompts.py --source-candidates ...` so Gemini prioritizes already-opened source URLs and uses Google Search only to fill gaps.
 - Do not let Gemini write the final long-form report until at least 40 verified candidate rows exist.
 - Treat repeated source URLs as duplicated events unless the row has a genuinely different direct URL and independent event basis. If URL-level deduplication leaves fewer than 40 verified rows, generate additional focused candidate batches before final drafting.
+- Focused top-up prompts must physically omit candidate rows whose URLs already exist in the verified evidence table. Do not rely only on the model reading an exclusion list.
 - If verified evidence stalls below 40 rows, first expand or tune `config/news_sources.json` with stable official/RSS/page sources, regenerate `data/source_candidates/<run_id>.md`, then build focused top-up prompts with `scripts/build_verified_rows_prompt.py --source-candidates data/source_candidates/<run_id>.md --window-prompt data/gemini_inputs/<run_id>/gemini-prompt.md`. Keep Gemini doing the retrieval/screening work; Codex should audit URLs and guide focused top-ups rather than manually writing large batches.
 - Open every Top 40 source URL over the network before rendering or delivery. Replace inaccessible links, and remove any event that cannot be independently re-verified.
 - Final report sources must never contain `vertexaisearch`, Google Search pages, Google grounding redirects, guessed URLs, homepage-only citations, placeholders, or 404 links.
@@ -72,6 +73,8 @@ Gemini must produce a Chinese global news intelligence report based on real retr
   - 26-40: `第三梯队：微观信号与前兆`
 
 One-shot final report generation is no longer the preferred production path. Split retrieval into evidence batches (macro, AI/technology, China, and industry), audit the candidate URLs, then build the final prompt from the verified evidence table. Never invent or guess replacement URLs.
+
+Use `--stream` for long final drafts and long repair calls. If the final report fails only the 170/170/360 depth gate, build a narrow supplement prompt for the failing ranks, ask Gemini for event-specific monitoring indicators and actions, append only to the fourth column, and rerun `check_gemini_report.py`. Do not regenerate already compliant rows.
 
 ## 4. Formatting Contract
 

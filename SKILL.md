@@ -49,6 +49,9 @@ Use this skill for Hannah's recurring News All in One global news intelligence w
 - Gemini must follow the candidate-first verified-source workflow: generate candidate evidence rows, audit source URLs, then draft the final report only from a verified evidence table.
 - If Gemini API quota is exhausted and Hannah explicitly authorizes using Codex/OpenAI capacity, Codex may draft from the verified source-candidate pool directly. This does not relax any delivery gate: exactly 40 ranked rows, 40 openable direct source URLs, no duplicate URLs, content review, source audit, visual inspection, and delivery verification still apply.
 - Do not ask Gemini to write the final report until at least 40 verified candidate rows are available.
+- For focused evidence top-ups, remove every already-used URL from the candidate table before sending it to Gemini. A prose exclusion list alone is not sufficient because smaller models may repeat the original rows.
+- Use Gemini SSE streaming for the long final report and long repair batches so a valid generation is not lost to an idle long-response connection reset.
+- If only the analysis-depth gate fails, repair the failing rows only. Keep event titles, rankings, facts and source URLs locked; append event-specific monitoring indicators and actions, then rerun the complete content review.
 - Reject simulated or hypothetical Gemini output. If candidate batches are insufficient, generate focused additional batches rather than letting Gemini fill gaps.
 - Open all 40 source URLs before rendering or delivery. Replace inaccessible links, and remove any event that cannot be independently re-verified.
 - Final report sources must never contain `vertexaisearch`, Google Search pages, Google grounding redirects, guessed URLs, homepage-only citations, placeholders, or 404 links.
