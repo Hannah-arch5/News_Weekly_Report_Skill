@@ -51,7 +51,8 @@ Use this skill for Hannah's recurring News All in One global news intelligence w
 - Do not ask Gemini to write the final report until at least 40 verified candidate rows are available.
 - For focused evidence top-ups, remove every already-used URL from the candidate table before sending it to Gemini. A prose exclusion list alone is not sufficient because smaller models may repeat the original rows.
 - Use Gemini SSE streaming for the long final report and long repair batches so a valid generation is not lost to an idle long-response connection reset.
-- If only the analysis-depth gate fails, repair the failing rows only. Keep event titles, rankings, facts and source URLs locked; append event-specific monitoring indicators and actions, then rerun the complete content review.
+- Normalize mechanical table drift before regeneration. If Gemini merges the two analysis columns while preserving the source, split at the `情报价值：` label and restore the five-column schema.
+- If only the analysis-depth gate fails, repair the failing rows only. Keep event titles, rankings, facts and source URLs locked. If only the fourth column is short, append event-specific monitoring indicators and actions there; if both analysis columns are short, append focused repricing/boundary analysis to the third column and monitoring/action guidance to the fourth. Rerun the complete content review after every pass and do not regenerate compliant rows.
 - Reject simulated or hypothetical Gemini output. If candidate batches are insufficient, generate focused additional batches rather than letting Gemini fill gaps.
 - Open all 40 source URLs before rendering or delivery. Replace inaccessible links, and remove any event that cannot be independently re-verified.
 - Final report sources must never contain `vertexaisearch`, Google Search pages, Google grounding redirects, guessed URLs, homepage-only citations, placeholders, or 404 links.

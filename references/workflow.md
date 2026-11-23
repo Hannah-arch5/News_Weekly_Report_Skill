@@ -74,7 +74,7 @@ Gemini must produce a Chinese global news intelligence report based on real retr
 
 One-shot final report generation is no longer the preferred production path. Split retrieval into evidence batches (macro, AI/technology, China, and industry), audit the candidate URLs, then build the final prompt from the verified evidence table. Never invent or guess replacement URLs.
 
-Use `--stream` for long final drafts and long repair calls. If the final report fails only the 170/170/360 depth gate, build a narrow supplement prompt for the failing ranks, ask Gemini for event-specific monitoring indicators and actions, append only to the fourth column, and rerun `check_gemini_report.py`. Do not regenerate already compliant rows.
+Use `--stream` for long final drafts and long repair calls. Normalize mechanical table drift before regeneration: if Gemini merges the two analysis columns while leaving the source intact, let `normalize_gemini_report.py` split the row at `情报价值：` and restore the five-column schema. If the final report then fails only the 170/170/360 depth gate, repair only failing ranks. Use the single-column supplement path when only the fourth column is short; use `build_dual_depth_supplement_prompt.py` and `apply_dual_depth_supplements.py` when both columns need depth. The dual path appends repricing/boundary analysis to the third column and monitoring/action guidance to the fourth while locking titles, facts, rankings and sources. Rerun `check_gemini_report.py` after every pass and never regenerate already compliant rows.
 
 ## 4. Formatting Contract
 
